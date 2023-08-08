@@ -1,6 +1,6 @@
 ﻿namespace Northwind.Domain.Production
 {
-    public class Supplier
+    public class Supplier : AggregateRoot
     {
         public Address Address { get; set; }
         public Contact Contact { get; set; }

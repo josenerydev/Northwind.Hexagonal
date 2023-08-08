@@ -1,6 +1,6 @@
 ﻿namespace Northwind.Domain.Sales
 {
-    public class Region
+    public class Region : AggregateRoot
     {
         public string Name { get; set; }
         public List<Territories> Territories { get; set; }

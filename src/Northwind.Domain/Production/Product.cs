@@ -1,6 +1,6 @@
 ﻿namespace Northwind.Domain.Production
 {
-    public class Product
+    public class Product : AggregateRoot
     {
         public string Category { get; set; }
         public bool Discontinued { get; set; }

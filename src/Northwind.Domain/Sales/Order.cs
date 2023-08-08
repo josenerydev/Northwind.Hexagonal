@@ -1,6 +1,6 @@
 ﻿namespace Northwind.Domain.Sales
 {
-    public class Order
+    public class Order : AggregateRoot
     {
         public string Company { get; set; }
         public string Employee { get; set; }

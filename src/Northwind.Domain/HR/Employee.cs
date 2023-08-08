@@ -1,6 +1,6 @@
 ﻿namespace Northwind.Domain.HR
 {
-    public class Employee
+    public class Employee : AggregateRoot
     {
         public Address Address { get; set; }
         public DateTimeOffset Birthday { get; set; }
