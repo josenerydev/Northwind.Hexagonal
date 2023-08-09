@@ -1,5 +1,8 @@
+using Northwind.Application.Commands.CreateCategory;
 using Northwind.Application.Queries;
+using Northwind.Application.Repositories;
 using Northwind.Infrastructure.Queries;
+using Northwind.Infrastructure.Repositories;
 
 using Raven.Client.Documents;
 
@@ -20,6 +23,9 @@ builder.Services.AddSingleton<IDocumentStore>(ctx =>
 });
 
 builder.Services.AddScoped<ICategoriesQueries, CategoriesQueries>();
+builder.Services.AddScoped<ICategoryReadOnlyRepository, CategoryRepository>();
+builder.Services.AddScoped<ICategoryWriteOnlyRepository, CategoryRepository>();
+builder.Services.AddScoped<ICreateCategoryUseCase, CreateCategoryUseCase>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

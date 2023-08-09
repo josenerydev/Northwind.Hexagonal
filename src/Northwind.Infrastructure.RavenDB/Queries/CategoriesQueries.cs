@@ -19,7 +19,11 @@ namespace Northwind.Infrastructure.Queries
         {
             using (IAsyncDocumentSession session = _documentStore.OpenAsyncSession())
             {
-                return await session.Query<Category>().ToListAsync();
+                var categoryEntities = await session.Query<Entities.Category>().ToListAsync();
+
+                var categories = categoryEntities.Select(ce => Category.Load(ce.Id, new Description(ce.Description), new Name(ce.Name))).ToList();
+
+                return categories;
             }
         }
     }

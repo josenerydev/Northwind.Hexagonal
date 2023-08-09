@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
 using Northwind.Application.Queries;
+using Northwind.WebApi.Model;
 
 namespace Northwind.WebApi.UseCases.GetCategories
 {
@@ -18,7 +19,19 @@ namespace Northwind.WebApi.UseCases.GetCategories
         [HttpGet(Name = "GetCategories")]
         public async Task<IActionResult> Get()
         {
-            return Ok(await _categoriesQueries.GetCategories());
+            var categories = await _categoriesQueries.GetCategories();
+
+            var categoryModels = categories.Select(category =>
+                new CategoryModel(
+                    category.Id,
+                    category.Name.ToString(),
+                    category.Description.ToString()
+                )
+            ).ToList();
+
+            var responseModel = new Model(categoryModels);
+
+            return Ok(responseModel);
         }
     }
 }
